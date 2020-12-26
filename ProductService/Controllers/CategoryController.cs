@@ -27,22 +27,14 @@ namespace ProductService.Controllers
         {
             try
             {
-                if (db.products.Any(c => c.name == model.name))
-                {
-                    return StatusCode(StatusCodes.Status400BadRequest, model); //If the name is duplicate, should return HTTP 400
-                }
-
-                else
-                {
                     db.category.Add(model);
                     db.SaveChanges();
-                    return StatusCode(StatusCodes.Status201Created, model); //1id On success, return HTTP 201
+                    return StatusCode(StatusCodes.Status201Created, model); 
 
-                }
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex); //1ic for other errors, return HTTP 500
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
         }
 
